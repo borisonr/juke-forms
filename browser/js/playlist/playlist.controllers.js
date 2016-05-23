@@ -1,21 +1,31 @@
-juke.controller('NewPlaylistFormCtrl', function($scope){
+juke.controller('NewPlaylistFormCtrl', function($scope, PlaylistFactory, $state){
 		$scope.create = function(data){
 		// if (data.name[0] === " ")	data.name = data.name.trim()
 		PlaylistFactory.create(data)
 		.then(function(result){
 			console.log(result);
-			$scope.title = " ";
-			$scope.reset = function() {
-
-			}
+			$state.go('newPlaylistSongs', {playlist: result.id})
 		})
 	}
 
 })
 
-juke.controller('NewPlaylistCtrl', function($scope, PlaylistFactory, thePlaylist, PlayerFactory) {
+juke.controller('ViewPlaylistCtrl', function($scope, PlaylistFactory, thePlaylist, PlayerFactory, allSongs, SongFactory) {
 
   $scope.playlist = thePlaylist;
+  $scope.allSongs = allSongs;
+  $scope.addSong = function(songId, playlistId){
+  	PlaylistFactory.addSong(songId, playlistId)
+  	.then(function(song){
+  		$scope.playlist.songs.push(SongFactory.convert(song));
+  		$scope.selectSong = '--choose song--'
+
+  	});
+  }
+
+  // $scope.resetDropdown = function() {
+  // 	$scope.selectSong.name = '--choose song--'
+  // }
 
   $scope.toggle = function (song) {
     if (song !== PlayerFactory.getCurrentSong()) {

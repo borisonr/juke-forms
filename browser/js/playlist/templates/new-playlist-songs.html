@@ -1,5 +1,23 @@
 <div>
   <h3>{{ playlist.name }}</h3>
+
+  <div>
+    <h4>Add to Playlist</h4>
+   <!--  <select ng-repeat='song in allSongs'>
+    <option>{{song.name}}</option>
+    </select> -->
+    <form name='addNewSongs'>
+      <select name='selectSong' ng-options="song.name for song in allSongs" ng-model="selectSong" required>
+        <option value="">--choose song--</option>
+      </select>
+
+      <button class="btn btn-default btn-xs btn-success" ng-disabled="addNewSongs.$pristine" ng-click="addSong(selectSong.id, playlist.id)">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </form>
+
+  </div>
+
   <table class='table' ng-show="playlist.songs.length">
     <thead>
       <tr>
