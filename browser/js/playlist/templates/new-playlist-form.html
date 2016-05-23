@@ -1,0 +1,20 @@
+<div class="well" >
+  <form class="form-horizontal" name="newPlaylist" ng-submit="create({name: title})">
+    <fieldset>
+      <legend>New Playlist</legend>
+      <div class="form-group">
+        <label class="col-xs-2 control-label">Name</label>
+        <div class="col-xs-10">
+          <input class="form-control" type="text" name='title' ng-model='title' ng-maxlength="16" required>
+          <p class="alert" style="color:orange" ng-show="newPlaylist.$invalid && newPlaylist.title.$dirty"> Your title is invalid</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-10 col-xs-offset-2">
+          <button type="submit" class="btn btn-success" name="submit" ng-disabled="newPlaylist.$invalid">Create Playlist</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
