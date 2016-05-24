@@ -4,7 +4,7 @@ juke.controller('NewPlaylistFormCtrl', function($scope, PlaylistFactory, $state)
 		PlaylistFactory.create(data)
 		.then(function(result){
 			console.log(result);
-			$state.go('newPlaylistSongs', {playlist: result.id})
+			$state.go('viewPlaylist', {playlist: result.id})
 		})
 	}
 

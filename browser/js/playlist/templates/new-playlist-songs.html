@@ -8,11 +8,11 @@
     <option>{{song.name}}</option>
     </select> -->
     <form name='addNewSongs'>
-      <select name='selectSong' ng-options="song.name for song in allSongs" ng-model="selectSong" required>
+<!--       <select name='selectSong' ng-options="song.name for song in allSongs" ng-model="selectSong" required>
         <option value="">--choose song--</option>
-      </select>
+      </select> -->
 
-<!--       <input type="text" name='selectSong' id='selectSong' ng-model="selectSong" placeholder="Song name" uib-typeahead="song as song.name  in allSongs | filter:$viewValue" class="form-control"> -->
+      <input type="text" name='selectSong' id='selectSong' ng-model="selectSong" placeholder="Song name" uib-typeahead="song as song.name  in allSongs | filter:$viewValue" class="form-control">
 
 
       <button class="btn btn-default btn-xs btn-success" ng-disabled="addNewSongs.$pristine" ng-click="addSong(selectSong.id, playlist.id)">
