@@ -1,4 +1,4 @@
-<div class="well" >
+<div class="well">
   <form class="form-horizontal" name="newPlaylist" ng-submit="create({name: title})">
     <fieldset>
       <legend>New Playlist</legend>
@@ -6,10 +6,13 @@
         <label class="col-xs-2 control-label">Name</label>
         <div class="col-xs-10">
           <input class="form-control" type="text" name='title' ng-model='title' ng-maxlength="16" required>
-          <p class="alert" style="color:orange" ng-show="newPlaylist.$invalid && newPlaylist.title.$dirty"> Your title is invalid</p>
+          <!-- <p class="alert" style="color:orange" ng-show="newPlaylist.$invalid && newPlaylist.title.$dirty"> Your title is invalid</p> -->
+          <div style="color:orange" ng-messages="newPlaylist.title.$error" role="alert">
+            <div ng-message="required">Please enter a value for this field.</div>
+            <div ng-message="maxlength">This field can be at most 16 characters long.</div>
+          </div>
         </div>
       </div>
-
       <div class="form-group">
         <div class="col-xs-10 col-xs-offset-2">
           <button type="submit" class="btn btn-success" name="submit" ng-disabled="newPlaylist.$invalid">Create Playlist</button>

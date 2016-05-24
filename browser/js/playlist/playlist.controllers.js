@@ -18,8 +18,21 @@ juke.controller('ViewPlaylistCtrl', function($scope, PlaylistFactory, thePlaylis
   	PlaylistFactory.addSong(songId, playlistId)
   	.then(function(song){
   		$scope.playlist.songs.push(SongFactory.convert(song));
-  		$scope.selectSong = '--choose song--'
+  		// $scope.selectSong = '--choose song--'
 
+  	});
+  }
+
+  $scope.deleteSong = function(songId, playlistId){
+  	PlaylistFactory.deleteSong(songId, playlistId)
+  	.then(function(data){
+  		var index;
+  		$scope.playlist.songs.forEach(function(song, idx) {
+  			if (song.id === songId)  index = idx;
+  		})
+  		$scope.playlist.songs.splice(index, 1);
+  		$scope.selectSong = '--choose song--';
+  		return data;
   	});
   }
 
